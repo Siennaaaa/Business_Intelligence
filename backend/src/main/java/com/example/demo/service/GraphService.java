@@ -12,10 +12,12 @@ import org.neo4j.driver.v1.StatementResult;
 import org.neo4j.driver.v1.types.Node;
 import org.neo4j.driver.v1.types.Path;
 import org.neo4j.driver.v1.types.Relationship;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
 
 public class GraphService {
 
@@ -42,7 +44,10 @@ public class GraphService {
         Pair<String, String> nodeType = NodeUtils.getTypeFromKey(type);
         // 查询语句(使用parameters拼接字段会执行失败，原因待查)
         String query = "MATCH p=((n:"+nodeType.getKey()+")-[*"+step+"]-()) where id(n)="+id+" return p limit " + limit;
-        return query(query);
+        System.out.println(nodeType.getKey());
+        //测试是否连通
+        String test ="MATCH p=()-[r:ns0__keyPerson]->() where id(r) = 40 RETURN p LIMIT 25";
+        return query(test);
     }
 
     /**
@@ -52,6 +57,7 @@ public class GraphService {
      */
     public HashMap<String, ArrayList<NodeEntity>> query(String query){
         // 获取结果
+        System.out.println(query);
         StatementResult result = getSession().run(query);
         System.out.println(query);
         HashMap<String, ArrayList<NodeEntity>> hashMap = new HashMap<>();
@@ -87,6 +93,7 @@ public class GraphService {
     }
 
 
+    //查找两个类型的节点之间的最短路径
     public HashMap<String, ArrayList<NodeEntity>> searchMinPath(int source, int target, int sourceType, int targetType){
         String query = "MATCH (source:"+NodeUtils.getTypeFromKey(sourceType).getKey()+"),(target:"+NodeUtils.getTypeFromKey(targetType).getKey()+") WHERE id(source) = "
                 + source +" AND id(target) = " + target +
@@ -94,6 +101,7 @@ public class GraphService {
         return query(query);
     }
 
+    //查找两个类型的节点之间所有最短路径
     public HashMap<String, ArrayList<NodeEntity>> searchAllMinPaths(int source, int target, int sourceType, int targetType){
         String query = "MATCH (source:"+NodeUtils.getTypeFromKey(sourceType).getKey()+"),(target:"+NodeUtils.getTypeFromKey(targetType).getKey()+") WHERE id(source) = "
                 + source +" AND id(target) = " + target +

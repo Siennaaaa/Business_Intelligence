@@ -12,7 +12,7 @@ public class ParamUtils {
         return stringBuilder.toString().substring(0, stringBuilder.length()-1);
     }
 
-    //检查步数
+    //检查步数是否超过最值
     public static int checkStep(int step){
         if (step <= ConfigUtils.MinStep)
             return ConfigUtils.MinStep;

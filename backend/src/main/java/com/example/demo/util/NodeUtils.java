@@ -43,21 +43,21 @@ public class NodeUtils {
      */
     // 所有节点d label
     private static void initNodeTypes() {
-        nodeTypes.put(1, new Pair<>("ns4__Quote","ns1__hasName"));
-        nodeTypes.put(2, new Pair<>("ns7__Organization","ns6__organization-name"));
-        nodeTypes.put(3, new Pair<>("ns4__Instrument","ns1__hasName"));
-        nodeTypes.put(4, new Pair<>("ns4__AssetClass","rdfs__label"));
-        nodeTypes.put(5, new Pair<>("ns6__Currency","skos__prefLabel"));
-        nodeTypes.put(6, new Pair<>("ns6__CurrencySubunit","skos__prefLabel"));
-        nodeTypes.put(7, new Pair<>("ns5__Activity","skos__prefLabel"));
-        nodeTypes.put(8, new Pair<>("ns5__BusinessSector","skos__prefLabel"));
-        nodeTypes.put(9, new Pair<>("ns5__EconomicSector","skos__prefLabel"));
-        nodeTypes.put(10, new Pair<>("ns5__Industry","skos__prefLabel"));
-        nodeTypes.put(11, new Pair<>("ns0__AcademicQualification","ns8__fromInstitutionName"));
-        nodeTypes.put(12, new Pair<>("ns0__Person","ns6__given-name"));
-        nodeTypes.put(13, new Pair<>("ns5__IndustryGroup","skos__prefLabel"));
-        nodeTypes.put(14, new Pair<>("ns0__Major","skos__prefLabel"));
-        nodeTypes.put(15, new Pair<>("ns0__AcademicDegree","skos__prefLabel"));
+        nodeTypes.put(1, new Pair<>("ns0__service","ns1__hasName"));
+//        nodeTypes.put(2, new Pair<>("ns7__Organization","ns6__organization-name"));
+//        nodeTypes.put(3, new Pair<>("ns4__Instrument","ns1__hasName"));
+//        nodeTypes.put(4, new Pair<>("ns4__AssetClass","rdfs__label"));
+//        nodeTypes.put(5, new Pair<>("ns6__Currency","skos__prefLabel"));
+//        nodeTypes.put(6, new Pair<>("ns6__CurrencySubunit","skos__prefLabel"));
+//        nodeTypes.put(7, new Pair<>("ns5__Activity","skos__prefLabel"));
+//        nodeTypes.put(8, new Pair<>("ns5__BusinessSector","skos__prefLabel"));
+//        nodeTypes.put(9, new Pair<>("ns5__EconomicSector","skos__prefLabel"));
+//        nodeTypes.put(10, new Pair<>("ns5__Industry","skos__prefLabel"));
+//        nodeTypes.put(11, new Pair<>("ns0__AcademicQualification","ns8__fromInstitutionName"));
+//        nodeTypes.put(12, new Pair<>("ns0__Person","ns6__given-name"));
+//        nodeTypes.put(13, new Pair<>("ns5__IndustryGroup","skos__prefLabel"));
+//        nodeTypes.put(14, new Pair<>("ns0__Major","skos__prefLabel"));
+//        nodeTypes.put(15, new Pair<>("ns0__AcademicDegree","skos__prefLabel"));
     }
 
     public static Pair<String, String> getTypeFromKey(int key){

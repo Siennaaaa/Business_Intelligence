@@ -8,11 +8,13 @@ import java.util.Map;
  * Neo4j中的节点类型，可序列化
  */
 public class NodeEntity implements Serializable {
-    public HashMap<String, Object> properties;
+    public HashMap<String, Object> properties;//节点的属性
+
 
     public NodeEntity() {
         properties = new HashMap<>();
     }
+
 
     public NodeEntity(HashMap<String, Object> properties) {
         this.properties = properties;
@@ -32,7 +34,7 @@ public class NodeEntity implements Serializable {
 
     public void put(String key, Object o){
         properties.put(key, o);
-    }
+    }//添加属性
 
     public void putAll(Map<String, Object> map){
         properties.putAll(map);
