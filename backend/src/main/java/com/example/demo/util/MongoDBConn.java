@@ -1,6 +1,7 @@
 package com.example.demo.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.entity.NodeEntity;
 import com.mongodb.*;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -47,7 +48,7 @@ public class MongoDBConn {
      * @param hashMap key-value：检索词- 时间+检索结果
      * @param type 节点类型
      */
-    public static void addOne(String param, HashMap<String, ArrayList<Node>> hashMap, int type){
+    public static void addOne(String param, HashMap<String, ArrayList<NodeEntity>> hashMap, int type){
         //获取节点类型对应的数据库
         MongoCollection<Document> collection = getMongoCollection(type);
         JSONObject jsonObject = new JSONObject();

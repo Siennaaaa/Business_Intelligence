@@ -1,5 +1,7 @@
 package com.example.demo.util;
 
+import com.example.demo.entity.CacheEntity;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -15,7 +17,7 @@ public class MySQLConn {
     }
 
     //通过节点的类型和名字进行模糊查询
-    public ArrayList<CacheEntity> selectNodesByTypeandName(int type,String name) throws SQLException, ClassNotFoundException {
+    public ArrayList<CacheEntity> selectNodesByTypeandName(int type, String name) throws SQLException, ClassNotFoundException {
         String sql = "select * from Business where Type=? and Name like ? limit 50";
 
         PreparedStatement preparedStatement = getMysqlConn().prepareStatement(sql);

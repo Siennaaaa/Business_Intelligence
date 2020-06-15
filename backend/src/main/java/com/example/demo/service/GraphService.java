@@ -1,5 +1,10 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.NodeEntity;
+import com.example.demo.entity.RelationEntity;
+import com.example.demo.util.ConfigUtils;
+import com.example.demo.util.Neo4jConn;
+import com.example.demo.util.NodeUtils;
 import javafx.util.Pair;
 import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Session;
@@ -7,11 +12,6 @@ import org.neo4j.driver.v1.StatementResult;
 import org.neo4j.driver.v1.types.Node;
 import org.neo4j.driver.v1.types.Path;
 import org.neo4j.driver.v1.types.Relationship;
-import top.guitoubing.bi.entity.NodeEntity;
-import top.guitoubing.bi.entity.RelationEntity;
-import top.guitoubing.bi.util.ConstantDefinition;
-import top.guitoubing.bi.util.Neo4jDriverInitialize;
-import top.guitoubing.bi.util.NodeUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class GraphService {
 
-    private Neo4jDriverInitialize neo4jDriverInitialize = new Neo4jDriverInitialize();
+    private Neo4jConn neo4jDriverInitialize = new Neo4jConn();
     private Session session;
 
     private Session getSession(){
@@ -78,8 +78,8 @@ public class GraphService {
                     relationList.add(relationEntity);
             }
         }
-        hashMap.put(ConstantDefinition.NODES, nodeList);
-        hashMap.put(ConstantDefinition.RELATIONS, relationList);
+        hashMap.put(ConfigUtils.NODES, nodeList);
+        hashMap.put(ConfigUtils.RELATIONS, relationList);
         if (session.isOpen())
             session.close();
 //        System.err.println(hashMap);
@@ -200,8 +200,8 @@ public class GraphService {
         }
         System.out.println("路径数量：" + pathCount);
         System.out.println("有效路径数量：" + validCount);
-        hashMap.put(ConstantDefinition.NODES, nodeList);
-        hashMap.put(ConstantDefinition.RELATIONS, deWeightRelation(relationList));
+        hashMap.put(ConfigUtils.NODES, nodeList);
+        hashMap.put(ConfigUtils.RELATIONS, deWeightRelation(relationList));
         if (session.isOpen())
             session.close();
         return hashMap;
