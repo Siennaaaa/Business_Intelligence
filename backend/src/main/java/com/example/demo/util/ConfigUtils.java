@@ -4,15 +4,15 @@ package com.example.demo.util;
 public class ConfigUtils {
 
     //neo4j数据库的连接
-    private static String url = "bolt://192.168.1.105:7687";
+    private static String url = "bolt://0.0.0.0:7474";
     static final String username = "neo4j";
     static final String password = "root";
 
     //mongodb数据库连接
-    static final String mongoUser = "testAdmin";
-    static final String mongoDatabase = "admin";
-    static final String mongoPassword = "123456";
-    static final String mongoIp = "47.101.148.55";
+    static final String mongoUser = "root";
+    static final String mongoDatabase = "bi";
+    static final String mongoPassword = "root";
+    static final String mongoIp = "127.0.0.1";
     static final int mongoPort = 27017;
     //collection name
     static final String mongoSingleCollection = "single";

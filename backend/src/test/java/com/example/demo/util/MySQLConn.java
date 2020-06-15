@@ -1,7 +1,5 @@
 package com.example.demo.util;
 
-import com.example.demo.entity.CacheEntity;
-
 import java.sql.*;
 import java.util.ArrayList;
 

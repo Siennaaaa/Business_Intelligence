@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.util.Neo4jConn;
-import com.example.demo.util.NodeUtils;
 import javafx.util.Pair;
 import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Session;
@@ -9,14 +7,19 @@ import org.neo4j.driver.v1.StatementResult;
 import org.neo4j.driver.v1.types.Node;
 import org.neo4j.driver.v1.types.Path;
 import org.neo4j.driver.v1.types.Relationship;
+import top.guitoubing.bi.entity.NodeEntity;
+import top.guitoubing.bi.entity.RelationEntity;
+import top.guitoubing.bi.util.ConstantDefinition;
+import top.guitoubing.bi.util.Neo4jDriverInitialize;
+import top.guitoubing.bi.util.NodeUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 public class GraphService {
-    //图数据库的
-    private Neo4jConn neo4jDriverInitialize = new Neo4jConn();
+
+    private Neo4jDriverInitialize neo4jDriverInitialize = new Neo4jDriverInitialize();
     private Session session;
 
     private Session getSession(){
@@ -30,11 +33,11 @@ public class GraphService {
      * 通过一个实体查询其关联的所有关系和实体(限定跳数和结果数量)
      * @param type 输入的实体种类
      * @param step 限定的跳数
-     * @param limit 限定结果数量
      * @param id 实体ID
+     * @param limit 限定结果数量
      * @return 查询的节点和关系集合
      */
-    public HashMap<String, ArrayList<Node>> searchByTypeAndId(int type, int step, int limit, int id){
+    public HashMap<String, ArrayList<NodeEntity>> searchByTypeAndId(int type, int step, int limit, int id){
         // 获取节点种类及其已定的查询字段
         Pair<String, String> nodeType = NodeUtils.getTypeFromKey(type);
         // 查询语句(使用parameters拼接字段会执行失败，原因待查)
@@ -47,15 +50,15 @@ public class GraphService {
      * @param query 语句
      * @return 结果集
      */
-    public HashMap<String, ArrayList<Node>> query(String query){
+    public HashMap<String, ArrayList<NodeEntity>> query(String query){
         // 获取结果
         StatementResult result = getSession().run(query);
         System.out.println(query);
-        HashMap<String,ArrayList<Node>> hashMap = new HashMap<>();
+        HashMap<String, ArrayList<NodeEntity>> hashMap = new HashMap<>();
         // 节点集合
-        ArrayList<Node> nodeList = new ArrayList<>();
+        ArrayList<NodeEntity> nodeList = new ArrayList<>();
         // 关系集合
-        ArrayList<Node> relationList = new ArrayList<>();
+        ArrayList<NodeEntity> relationList = new ArrayList<>();
         while (result.hasNext()){
             Record record = result.next();
             // 一个path相当于一条结果，这“一条结果”就是在查询语句中定义的'p'对应的表达式
@@ -63,7 +66,7 @@ public class GraphService {
             // 遍历节点添加
             Iterable<Node> nodes = path.nodes();
             for (Node node: nodes){
-                Node nodeEntity = nodeToEntity(node);
+                NodeEntity nodeEntity = nodeToEntity(node);
                 if (!nodeList.contains(nodeEntity))
                     nodeList.add(nodeEntity);
             }
