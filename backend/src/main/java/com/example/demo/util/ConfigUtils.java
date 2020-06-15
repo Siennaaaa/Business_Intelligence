@@ -2,7 +2,6 @@ package com.example.demo.util;
 
 //配置参数
 public class ConfigUtils {
-    // 连接字符串
 
     //neo4j数据库的连接
     private static String url = "bolt://192.168.1.105:7687";

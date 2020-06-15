@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class NodeUtils {
+    //节点的类型，这里运用
     private static HashMap<Integer, Pair<String, String>> nodeTypes = null;
 
     private static ArrayList<String> propertyNodes;
@@ -36,8 +37,11 @@ public class NodeUtils {
     }
 
 
-    //初始化节点的类型
-    // 宿舍服务器节点label名称
+    /*
+    Label将一个公共名称与一组节点或关系相关联。 节点或关系可以包含一个或多个标签。
+    我们可以为现有节点或关系创建新标签。 我们可以从现有节点或关系中删除现有标签。
+     */
+    // 所有节点d label
     private static void initNodeTypes() {
         nodeTypes.put(1, new Pair<>("ns4__Quote","ns1__hasName"));
         nodeTypes.put(2, new Pair<>("ns7__Organization","ns6__organization-name"));

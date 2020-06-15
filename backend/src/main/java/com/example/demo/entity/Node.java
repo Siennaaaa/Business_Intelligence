@@ -8,6 +8,7 @@ import java.util.Map;
  * Neo4j中的节点类型，可序列化
  */
 public class Node implements Serializable {
+    //节点是图标的基本单位，它包含具有键值对对属性，因此这里引用一个hashMap来存储这个节点的一组组属性
     public HashMap<String, Object> properties;
 
     public Node() {
@@ -26,10 +27,12 @@ public class Node implements Serializable {
         this.properties = properties;
     }
 
+    //获取属性
     public Object get(String key){
         return properties.get(key);
     }
 
+    //添加属性
     public void put(String key, Object o){
         properties.put(key, o);
     }
